@@ -1,0 +1,90 @@
+div.term {
+    font-size: 14px;
+}
+
+div.term div.jquery-console-inner {
+    background: #022831;
+    overflow: auto
+}
+
+div.term div.jquery-console-prompt-box {
+    color: white;
+    font-family: monospace;
+}
+
+div.term div.jquery-console-focus span.jquery-console-cursor {
+    background: rgba(255, 255, 255, 0.5);
+    color: white;
+    font-weight: bold
+}
+
+div.term div.jquery-console-message-error {
+    color: #ef0505;
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 0.1em;
+}
+
+div.term div.jquery-console-message-success {
+    color: #4FE179;
+    font-family: monospace;
+    padding: 0.1em;
+    white-space: pre;
+}
+
+div.term span.jquery-console-prompt-label {
+    font-weight: bold;
+}
+
+body {
+    min-width: 100vw;
+    background-color: #022831;
+    overflow-x: hidden;
+}
+
+.loading-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100vw;
+    font-family: Poppins, sans-serif;
+    background-color: #022831;
+}
+
+.loading {
+    position: relative;
+    padding: 0.1em;
+    font-size: 8vw;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: white;
+    border-bottom: 0.12em solid;
+}
+
+.loading-before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: inherit;
+    overflow: hidden;
+    color: #4FE179;
+    text-shadow: 0 0 0.2em;
+    border-bottom: inherit;
+    box-sizing: border-box;
+    width: 0%;
+}
+
+.animated {
+    animation: textAnim 2s infinite alternate linear;
+}
+
+@keyframes textAnim {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
