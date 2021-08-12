@@ -1,6 +1,8 @@
 # tidb-enhanced
 TiDB in browser, with enhanced console
 
+[![Standard JS](https://img.shields.io/badge/code%20style-standard-standard.svg)](https://github.com/standard/standard)
+
 ## How to use
 
 1. Install Python 3
