@@ -20,6 +20,7 @@ TiDB in browser, with enhanced console
 
 ## TODO
 
+- Fix query splitting
 - Autocomplete
 - Syntax highlighting
 - API for fetching list of databases, tables, and table schemas
