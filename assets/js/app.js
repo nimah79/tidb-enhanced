@@ -34,14 +34,7 @@ function executeSQLSync(query)
 async function updateDbName()
 {
     let newDbname = await executeSQLSync('SELECT DATABASE();');
-    newDbname = newDbname.match(/(?<=\+-+\+\n\| DATABASE\(\) \|\s*\n\+-+\+\n\|\s).*?(?=\s*\|\s*\n\+-+\+)/);
-    if (!newDbname) {
-        return;
-    }
-    dbname = newDbname[0];
-    if (dbname == '<nil>') {
-        dbname = '(none)';
-    }
+    dbname = newDbname.split('\n')[3].trim().slice(1, -1).trim();
     window.shell.promptLabel = 'MySQL [' + dbname + ']> ';
 }
 
