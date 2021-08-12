@@ -16,6 +16,7 @@ TiDB in browser, with enhanced console
 - Blinking cursor
 - Smooth scroll when executing commands
 - Fix scrolling to top when pasting query (needs improvement)
+- MySQL-like error codes
 
 ## TODO
 
