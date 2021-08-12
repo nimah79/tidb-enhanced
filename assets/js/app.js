@@ -35,6 +35,9 @@ async function updateDbName()
 {
     let newDbname = await executeSQLSync('SELECT DATABASE();');
     dbname = newDbname.split('\n')[3].trim().slice(1, -1).trim();
+    if (dbname == '<nil>') {
+        dbname = '(none)';
+    }
     window.shell.promptLabel = 'MySQL [' + dbname + ']> ';
 }
 
