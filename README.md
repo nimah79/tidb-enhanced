@@ -17,10 +17,17 @@ TiDB in browser, with enhanced console
 - Smooth scroll when executing commands
 - Fix scrolling to top when pasting query (needs improvement)
 - MySQL-like error codes
+- JavaScript API for fetching list of databases, tables, and table schemas (needs improvement)
+
+## JavaScript API
+
+- Get database names: `await getDatabaseNames()`
+- Get table names of a database: `await getTableNames(databaseName)`
+- Get table schema: `await getTableSchema(databaseName, tableName)`
+- Get table contents: `await getTableContents(databaseName, tableName)`
 
 ## TODO
 
 - Fix query splitting
 - Autocomplete
 - Syntax highlighting
-- API for fetching list of databases, tables, and table schemas
