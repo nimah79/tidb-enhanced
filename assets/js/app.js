@@ -28,70 +28,22 @@ function bootstrapGo () {
 function executeSQLAsync (query) {
   return new Promise(resolve => {
     executeSQL(query, function (result) {
-      result = changeErrorStyle(result)
-      resolve({ result: result, message: getResultMessage(result), table: getResultTable(result) })
+      resolve(JSON.parse(result))
     })
   })
 }
 
-function getResultMessage (result) {
-  return result.replace(/^\+-.*-\+\n/s, '').trim()
-}
-
-function getResultTable (result) {
-  const headerLine = result
-    .substring(
-      result.indexOf('+\n| ') + 2,
-      result.indexOf('| \n+') + 1
-    )
-  const header = headerLine
-    .slice(2, -1)
-    .split('|')
-    .map((element) => element.trim())
-  const separatorIndexes = []
-  for (let i = 1; i < headerLine.length; i++) {
-    if (headerLine[i] === '|') {
-      separatorIndexes.push(i)
-    }
+async function getCurrentDbName () {
+  const result = await executeSQLAsync('SELECT DATABASE()')
+  dbname = result.table.rows[0][0]
+  if (dbname == '<nil>') {
+    dbname = null
   }
-  const rowsStr = result.substring(result.lastIndexOf('+\n| ') + 3, result.lastIndexOf('| \n+') + 1)
-  let tmpIndex = 0
-  const rows = []
-  while (true) {
-    const row = []
-    let finished = false
-    for (const separatorIndex of separatorIndexes) {
-      const until = rowsStr.indexOf('|', tmpIndex)
-      if (until === -1) {
-        finished = true
-        break
-      }
-      let value = rowsStr.substring(tmpIndex, until).trim()
-      if (value === '<nil>') {
-        value = null
-      }
-      row.push(value)
-      tmpIndex = until + 1
-    }
-    tmpIndex += 3
-    if (finished || row.length === 0) {
-      break
-    }
-    rows.push(row)
-  }
-
-  return { header: header, rows: rows }
-}
-
-function changeErrorStyle (result) {
-  return result
-    .replace('TiDB', 'MySQL')
-    .replace(/^\[\w+:(\d+)\]/m, '#$1 - ')
+  return dbname
 }
 
 async function updateDbName () {
-  const result = await executeSQLAsync('SELECT DATABASE()')
-  dbname = result.table.rows[0][0]
+  dbname = await getCurrentDbName()
   if (!dbname) {
     dbname = '(none)'
   }
@@ -135,7 +87,7 @@ function bootstrapTerm () {
       }
       window.shell.continuedPrompt = false
       let msg = await executeSQLAsync(line)
-      msg = msg.result
+      msg = JSON.stringify(msg)
       if (line.toLowerCase().includes('use') || line.toLowerCase().includes('drop')) {
         await updateDbName()
       }
