@@ -145,7 +145,7 @@ function progressHandler (response) {
   }
 
   // hardcode since some CDN does NOT return content-length for compressed content
-  const total = 93514823
+  const total = 85150769
   let loaded = 0
 
   return new Response(
