@@ -91,7 +91,7 @@ function changeErrorStyle (result) {
 
 async function updateDbName () {
   const result = await executeSQLAsync('SELECT DATABASE()')
-  dbname = result.table[0]['DATABASE()']
+  dbname = result.table.rows[0][0]
   if (!dbname) {
     dbname = '(none)'
   }
