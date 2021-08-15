@@ -245,8 +245,9 @@
       const labelText = extern.continuedPrompt ? continuedPromptLabel : extern.promptLabel
       promptBox.append(label.text(labelText).show())
       label.html(label.html().replace(' ', '&nbsp;'))
+      let syntax = $('<code class="syntax language-sql"></code>')
       prompt = $('<span class="jquery-console-prompt"></span>')
-      promptBox.append(prompt)
+      promptBox.append(syntax).append(prompt)
       inner.append(promptBox)
       updatePromptDisplay()
     };
@@ -770,7 +771,8 @@
     /// /////////////////////////////////////////////////////////////////////
     // Update the prompt display
     function updatePromptDisplay () {
-      const line = promptText
+      // const line = promptText
+      const line = ''
       let html = ''
       if (column > 0 && line == '') {
         // When we have an empty line just display a cursor.

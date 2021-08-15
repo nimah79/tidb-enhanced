@@ -88,3 +88,7 @@ body {
         width: 100%;
     }
 }
+
+code.hljs {
+    padding: 0 !important;
+}

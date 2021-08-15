@@ -228,3 +228,16 @@ function progressHandler (response) {
     })
   )
 }
+
+$(function () {
+  hljs.configure({
+    ignoreUnescapedHTML: true,
+    cssSelector: '.syntax'
+  })
+});
+$(document).on("keyup", function (e) {
+  if (window.shell) {
+    $(".syntax").last().text(window.shell.promptText)
+  }
+  hljs.highlightAll()
+});
