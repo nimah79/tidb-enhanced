@@ -110,7 +110,7 @@ async function getTableNames (databaseName) {
 
 async function getTableSchema (databaseName, tableName) {
   const result = await executeSQLAsync('DESCRIBE `' + databaseName.replace('`', '``') + '`.`' + tableName.replace('`', '``') + '`')
-  return result.table.rows.map((row) => row[0])
+  return result
 }
 
 async function getTableContents (databaseName, tableName) {
